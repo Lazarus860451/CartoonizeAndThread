@@ -45,11 +45,6 @@ public:
         return item;
     }
 
-    // Get queue size
-    int size() {
-        std::lock_guard<std::mutex> lock(mutex_);
-        return queue_.size();
-    }
 };
 
 // Convert image to cartoon style
