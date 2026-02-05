@@ -66,7 +66,11 @@ cv::Mat cartoonizeImage(const cv::Mat& img) {
     // 5. Smooth colors while preserving edges
     cv::bilateralFilter(img, color, 5, 50, 50);
 
-    // 6. Combine smoothed image with edges
+    //6.Color quantize
+    int levels = 64;
+    cv::Mat quantized = (img / (256/levels)) * (256/levels);
+
+    // 7. Combine smoothed image with edges
     cv::Mat edgesBGR;
     cv::cvtColor(edges, edgesBGR, cv::COLOR_GRAY2BGR);
     cv::bitwise_and(color, edgesBGR, result);
